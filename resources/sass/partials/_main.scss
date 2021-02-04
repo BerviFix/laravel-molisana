@@ -37,3 +37,47 @@
         }
     }
 }
+
+.wrapper {
+    position: relative;
+    padding: 30px 0;
+    background-color:#B8DAE6;
+    text-align: center;
+
+    p {
+        font-size: 24px;
+        text-align: left;
+    }
+
+    .prev {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 50px;
+        color: white;
+
+        a {
+            font-size: 50px;
+            color: white;
+            :hover {
+            color: #2980b9;
+            }
+        }
+    }
+
+    .next {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        a {
+            font-size: 50px;
+            color: white;
+            :hover {
+            color: #2980b9;
+            }
+        }
+    }
+}
