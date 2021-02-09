@@ -13,57 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', 'ProductController@index')->name('home');
 
-    $data = config('pasta');
+Route::get('/prodotto/{id}', 'ProductController@show')->name('prodotto');
 
-    $lunghe = [];
-    $corte = [];
-    $cortissime = [];
-
-    foreach ($data as $key => $pasta) {
-
-        $pasta["id"] = $key;
-        
-        if ($pasta["tipo"] == "lunga") {
-            $lunghe[] = $pasta;
-        } elseif ($pasta["tipo"] == "corta") {
-             $corte[] = $pasta;
-        } elseif ($pasta["tipo"] == "cortissima") {
-            $cortissime[] = $pasta;
-        }
-
-    }
-
-    return view('home', compact('lunghe', 'corte', 'cortissime')
-    // [
-    //     "lunghe" => $lunghe,
-    //     "corte" => $corte,
-    //     "cortissime" => $cortissime,
-    // ]
-    );
-})->name('home');
-
-Route::get('/prodotto/{id}', function ($id) {
-
-    $data = config('pasta');
-
-    $prev = $id - 1;
-    $next = $id + 1;
-
-    if ($id == 0)  {
-        $prev = count($data) - 1;
-    } elseif ($id == count($data) - 1) {
-        $next = 0;
-    }
-
-    return view('product', [
-        'product' => $data[$id],
-        'prev' => $prev,
-        'next' => $next
-    ]);
-})->name('prodotto');
-
-Route::get('/news', function () {
-    return view('news');
-})->name('news');
+Route::get('/news', 'NewsController@index')->name('news');
